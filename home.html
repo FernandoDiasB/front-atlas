@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Sistema Médico</title>
+    <link rel="stylesheet" href="css/style-home.css">
+    <!-- Adicionando ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="imgs/499093655_18282649687248587_1700360376536010218_n.jpg" alt="Logo da Marca">
+        </div>
+        <button class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Sair
+        </button>
+    </header>
+
+    <div class="main-container">
+        <nav class="sidebar">
+            <a href="agenda.html" class="menu-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Agenda</span>
+            </a>
+            <a href="paciente.html" class="menu-item">
+                <i class="fas fa-user-injured"></i>
+                <span>Paciente</span>
+            </a>
+            <a href="cadastro-paciente.html" class="menu-item">
+                <i class="fas fa-user-injured"></i>
+                <span>Cadastrar Paciente</span>
+            </a>
+            <a href="alertas.html" class="menu-item">
+                <i class="fas fa-bell"></i>
+                <span>Alertas</span>
+                <span class="alert-badge"></span>
+            </a>
+        </nav>
+
+        <main class="content">
+            <h1>Bem-vindo ao Sistema</h1>
+            <p>Selecione uma opção no menu lateral para começar.</p>
+        </main>
+    </div>
+
+    <script type="module" src="js/home.js"></script>
+
+</body>
+</html>

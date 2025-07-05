@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Paciente</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: #0056b3;
+    }
+
+    .message-container {
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    .message {
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 4px;
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .message.success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .message.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .message.fade-out {
+      animation: fadeOut 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    button[disabled] {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Cadastro de Paciente</h1>
+  <form id="pacienteForm">
+    <label for="nome">Nome Completo</label>
+    <input type="text" id="nome" name="nome" required>
+
+    <label for="dataNascimento">Data de Nascimento</label>
+    <input type="date" id="dataNascimento" name="dataNascimento" required>
+
+    <label for="estadoCivil">Estado Civil</label>
+    <select id="estadoCivil" name="estadoCivil">
+      <option value="">Selecione</option>
+      <option value="Solteiro(a)">Solteiro(a)</option>
+      <option value="Casado(a)">Casado(a)</option>
+      <option value="Divorciado(a)">Divorciado(a)</option>
+      <option value="Viúvo(a)">Viúvo(a)</option>
+      <option value="Outro">Outro</option>
+    </select>
+
+    <label for="nomeConjuge">Nome do Cônjuge</label>
+    <input type="text" id="nomeConjuge" name="nomeConjuge">
+
+    <label for="tempoCasado">Tempo de Casamento (em anos)</label>
+    <input type="number" id="tempoCasado" name="tempoCasado" min="0">
+
+    <label for="filhos">Filhos</label>
+    <input type="text" id="filhos" name="filhos" placeholder="Ex: 2 filhos, 1 filha">
+
+    <label for="endereco">Endereço</label>
+    <textarea id="endereco" name="endereco"></textarea>
+
+    <label for="telefone">Telefone</label>
+    <input type="tel" id="telefone" name="telefone">
+
+    <label for="telefoneEmergencia">Telefone de Emergência</label>
+    <input type="tel" id="telefoneEmergencia" name="telefoneEmergencia">
+
+    <label for="medicacoes">Medicações</label>
+    <textarea id="medicacoes" name="medicacoes"></textarea>
+
+    <label for="alergias">Alergias</label>
+    <textarea id="alergias" name="alergias"></textarea>
+
+    <label for="fatosRelevantes">Fatos Relevantes</label>
+    <textarea id="fatosRelevantes" name="fatosRelevantes"></textarea>
+
+    <button class="button" type="submit">Cadastrar</button>
+  </form>
+
+  <script src="js/cadastro-paciente.js"></script>
+</body>
+
+</html>
