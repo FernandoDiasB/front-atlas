@@ -8,48 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Dynamic content loading
-    const links = document.querySelectorAll(".menu-item");
-    const content = document.querySelector(".content");
-
-    // Function to load scripts dynamically
-    function loadScript(src, callback) {
-        const script = document.createElement('script');
-        script.src = src;
-        script.onload = callback;
-        document.body.appendChild(script);
-    }
-
-    // Function to load content
-    function loadContent(page) {
-        fetch(page)
-            .then(res => {
-                if (!res.ok) throw new Error(`Erro ${res.status}: ${res.statusText}`);
-                return res.text();
-            })
-            .then(html => {
-                content.innerHTML = html;
-                
-                // Load associated JS file if exists
-                const scriptMatch = html.match(/<script src="([^"]+)"><\/script>/);
-                if (scriptMatch && scriptMatch[1]) {
-                    loadScript(scriptMatch[1]);
-                }
-                
-                history.pushState({ page }, '', `#${page.split('/').pop().replace('.html', '')}`);
-            })
-            .catch(err => {
-                console.error('Erro ao carregar:', err);
-                content.innerHTML = `
-                    <div class="error-message">
-                        <h2>Erro ao carregar o conteúdo</h2>
-                        <p>${err.message}</p>
-                        <button onclick="location.reload()">Recarregar</button>
-                    </div>
-                `;
-            });
-    }
-
     // Handle menu clicks
     links.forEach(link => {
         link.addEventListener("click", function(e) {
@@ -63,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function () {
   const token = localStorage.getItem('jwtToken');
   const tabela = document.querySelector('#tabelaPacientes tbody');
+  const excluirBtn = document.getElementById('excluirLista');
 
   if (!tabela) return;
   fetch('http://localhost:8080/api/pacientes', {
@@ -85,13 +44,39 @@ document.addEventListener('DOMContentLoaded', function () {
           <td>${p.estadoCivil}</td>
           <td>${p.filhos}</td>
           <td>${p.telefone}</td>
-          <td>${p.endereco}</td>
-          <td>${p.alergias}</td>
-        `;
+          <td>${p.endereco}</td>`;
         tabela.appendChild(linha);
       });
     })
     .catch(err => {
       tabela.innerHTML = `<tr><td colspan="6" style="color:red;">${err.message}</td></tr>`;
     });
+
+    if (excluirBtn) {
+        excluirBtn.addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja excluir TODOS os pacientes permanentemente?')) {
+                fetch('http://localhost:8080/api/pacientes', {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error('Erro ao excluir pacientes');
+                    carregarPacientes(); // Recarrega a lista vazia
+                    alert('Todos os pacientes foram removidos com sucesso!');
+                })
+                .catch(err => {
+                    console.error('Erro:', err);
+                    alert('Erro ao excluir pacientes: ' + err.message);
+                });
+            }
+        });
+    }
+
+    // Carrega os pacientes inicialmente
+    listarPacientes();
+
 });
+

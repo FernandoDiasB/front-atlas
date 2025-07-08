@@ -35,3 +35,23 @@ tr:nth-child(even) {
     max-width: 1100px;
     margin: auto;
 }
+
+.table-controls {
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+.btn-excluir {
+    margin-top: 40px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-excluir:hover {
+    background-color: #c82333;
+}

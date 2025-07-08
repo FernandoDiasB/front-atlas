@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <title>Pacientes Cadastrados</title>
   <link rel="stylesheet" href="/css/style-paciente.css" />
 </head>
+
 <body>
   <div class="paciente-container">
     <h1>Lista de Pacientes</h1>
@@ -17,16 +19,19 @@
           <th>Filhos</th>
           <th>Telefone</th>
           <th>Endereço</th>
-          <th>Alergias</th>
         </tr>
       </thead>
       <tbody>
         <!-- Conteúdo preenchido via JS -->
       </tbody>
     </table>
+    <div class="table-controls">
+      <button id="excluirLista" class="btn-excluir">Excluir Lista</button>
+    </div>
   </div>
 
   <!-- IMPORTANTE: esta tag precisa estar dentro do HTML carregado dinamicamente -->
   <script src="js/paciente.js"></script>
 </body>
+
 </html>
